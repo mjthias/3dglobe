@@ -1,0 +1,51 @@
+export const globeData = [
+  {
+    id: "a",
+    title: "Holmaneset",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    lat: 61.640336,
+    lng: -350.541189,
+  },
+  {
+    id: "b",
+    title: "Holmaneset",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    lat: 28.964895,
+    lng: -356.574876,
+  },
+  {
+    id: "c",
+    title: "Holmaneset",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    lat: -11.129897,
+    lng: -406.870188,
+  },
+  {
+    id: "c",
+    title: "Pilbara",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    lat: -24.557116,
+    lng: 119.705933,
+  },
+  {
+    id: "e",
+    title: "Pilbara",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    lat: 42.528796,
+    lng: -101.860727,
+  },
+  {
+    id: "f",
+    title: "Pilbara",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    lat: 59.240605,
+    lng: -477.492501,
+  },
+  {
+    id: "g",
+    title: "Pilbara",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    lat: -24.349599,
+    lng: -217.619647,
+  },
+];
