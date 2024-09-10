@@ -28,7 +28,7 @@ export default function ThreeDGlobe() {
 
     world(globeRef.current)
       .globeImageUrl("//unpkg.com/three-globe/example/img/earth-night.jpg")
-      .backgroundImageUrl("//unpkg.com/three-globe/example/img/night-sky.png")
+      .backgroundImageUrl("/stars_milky_way.jpg")
       .backgroundColor("#000")
       .htmlElementsData(globeData)
       .htmlElement((d) => {
