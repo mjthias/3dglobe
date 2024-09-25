@@ -4,6 +4,7 @@ import Globe from "globe.gl";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { globeData } from "./globeData";
+import Map from "./Map";
 
 type GDataObject = {
   id: string;
@@ -148,6 +149,7 @@ export default function ThreeDGlobe() {
                 x
               </button>
             </div>
+            {/* <Map position={{ lat: modal?.lat || 0, lng: modal?.lng || 0 }} /> */}
             <p className="text-2xl">{modal?.title}</p>
             <p className="text-sm mt-6">{modal?.text}</p>
           </div>
@@ -162,9 +164,10 @@ export default function ThreeDGlobe() {
             >
               Theme: {useWhite ? "Light" : "Dark"}
             </button>
-            {globeData.map((obj) => {
+            {globeData.map((obj, index) => {
               return (
                 <button
+                  key={index}
                   className="text-left"
                   onClick={() => {
                     setModal(obj);
