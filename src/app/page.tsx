@@ -11,7 +11,7 @@ export default function Home() {
           <Link href={"/night"}>Night globe</Link>
         </li>
         <li>
-          <Link href={"/cluster"}>Clusters</Link>
+          <Link href={"/clusters"}>Clusters</Link>
         </li>
 
         <li>
