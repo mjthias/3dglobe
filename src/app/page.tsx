@@ -10,6 +10,9 @@ export default function Home() {
         <li>
           <Link href={"/night"}>Night globe</Link>
         </li>
+        <li>
+          <Link href={"/cluster"}>Clusters</Link>
+        </li>
 
         <li>
           <a href="https://visibleearth.nasa.gov/collection/1484/blue-marble" target="_blank">
