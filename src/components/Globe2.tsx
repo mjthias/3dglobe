@@ -44,16 +44,17 @@ export default function ThreeDGlobe() {
         const obj = d as Cluster;
         const el = document.createElement("div");
         el.innerHTML = `
-        <div data-id="${
-          obj.id
-        }" class="globe-marker relative h-10 flex justify-center items-center transition-transform duration-700 group ${
+        <div data-id="${obj.id}" class="globe-marker relative ${
+          obj.locations.length > 1 ? "h-13" : "h-10"
+        } flex justify-center items-center transition-transform duration-700 group ${
           modal ? (modal.id == obj.id ? "scale-125" : "scale-75") : ""
         }">
 
-          <div class="backdrop-blur-lg p-1 rounded-full bg-opacity-20 size-8 hover:size-10 transition-[width,height] duration-300 ${
-            obj.locations.length > 1 ? "text-yellow-500 bg-yellow-500" : "text-[#00FF00] bg-[#00FF00]"
+          <div class="backdrop-blur-lg p-1 rounded-full bg-opacity-20  text-[#00FF00] bg-[#00FF00] transition-[width,height] duration-300 relative flex justify-center items-center ${
+            obj.locations.length > 1 ? "size-12 hover:size-14" : "size-8 hover:size-10"
           }" >
             ${markerSvg}
+            ${obj.locations.length > 1 ? `<p class="absolute text-xs text-white">${obj.locations.length}</p>` : ""}
           </div>
 
           <p class="absolute block top-full text-center whitespace-nowrap pointer-events-none font-normal backdrop-blur-lg px-2 py-1 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" >${generateTitle(
