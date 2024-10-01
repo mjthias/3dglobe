@@ -1,89 +1,86 @@
 "use client";
 
-import Globe from "globe.gl";
-import * as THREE from "three";
 import { useCallback, useEffect, useRef, useState } from "react";
+import Globe from "globe.gl";
+import { Cluster, createClusters } from "./createClusters";
 import { globeData } from "./globeData";
-import { createClusters, type Cluster } from "./createClusters";
-import { div } from "three/webgpu";
 
-function generateTitle(cluster: Cluster) {
-  let title = "";
-  cluster.locations.forEach((loc, index) => {
-    if (index == 0) title += loc.title;
-    else title += `,<br>${loc.title}`;
-  });
-  return title;
-}
-
-export default function ThreeDGlobe() {
-  const clusters = createClusters(globeData, 100);
-
-  const [modal, setModal] = useState<Cluster | null>(null);
+export default function SafariGlobe() {
   const globeRef = useRef<HTMLDivElement | null>(null);
-  const [useWhite, setUseWhite] = useState(false);
+
+  const clusters = createClusters(globeData, 100);
   const [filter, setFilter] = useState("all");
   const [filteredClusters, setFilteredClusters] = useState(clusters);
-
-  const markerSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" fill="none">
-<path d="M9 0C4.03952 0 0 4.0381 0 8.99683C0 13.9619 4.03317 18 9 18C13.9668 18 18 13.9619 18 9.00318C18.0063 4.0381 13.9605 0 9 0ZM9 14.4C6.02117 14.4 3.60127 11.9746 3.60127 9.00318C3.60127 6.03175 6.02752 3.60635 9 3.60635C11.9725 3.60635 14.3987 6.0254 14.3987 9.00318C14.4051 11.9746 11.9788 14.4 9 14.4Z" fill="currentColor"/>
-</svg>`;
+  const [modal, setModal] = useState<Cluster | null>(null);
 
   const world = useCallback(Globe({ animateIn: false }), []);
 
+  // Initialize world
   useEffect(() => {
     if (!globeRef.current) return;
-
-    world(globeRef.current)
+    world
       .globeImageUrl("/globe-blue-marble.jpg")
-      .bumpImageUrl("//unpkg.com/three-globe/example/img/earth-topology.png")
       .backgroundColor("#000")
-      .onGlobeReady(() => {
-        globeRef.current?.classList.remove("opacity-0", "scale-50");
-      });
+      .bumpImageUrl("//unpkg.com/three-globe/example/img/earth-topology.png")(globeRef.current);
+
+    world.pointOfView({ altitude: 1.7 });
 
     world.controls().enableZoom = false;
     world.width(window.innerWidth);
 
     window.addEventListener("resize", handleResize);
-
     function handleResize() {
       if (!globeRef.current) return;
-      const newWidth = globeRef.current.offsetWidth;
-      const newHeight = globeRef.current.offsetHeight;
-      world.width(newWidth);
-      world.height(newHeight);
+      world.width(window.innerWidth);
+      world.height(window.innerHeight);
     }
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  // Add pins
   useEffect(() => {
+    const markerSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" fill="none">
+    <path d="M9 0C4.03952 0 0 4.0381 0 8.99683C0 13.9619 4.03317 18 9 18C13.9668 18 18 13.9619 18 9.00318C18.0063 4.0381 13.9605 0 9 0ZM9 14.4C6.02117 14.4 3.60127 11.9746 3.60127 9.00318C3.60127 6.03175 6.02752 3.60635 9 3.60635C11.9725 3.60635 14.3987 6.0254 14.3987 9.00318C14.4051 11.9746 11.9788 14.4 9 14.4Z" fill="currentColor"/>
+    </svg>`;
+
+    function generateTitle(cluster: Cluster) {
+      let title = "";
+      cluster.locations.forEach((loc, index) => {
+        if (index == 0) title += loc.title;
+        else title += `,<br>${loc.title}`;
+      });
+      return title;
+    }
+
     world.htmlElementsData(filteredClusters).htmlElement((d) => {
       const obj = d as Cluster;
       const el = document.createElement("div");
       el.innerHTML = `
-      <div data-id="${obj.id}" class="globe-marker relative ${
+        <div data-id="${obj.id}" class="globe-marker relative ${
         obj.locations.length > 1 ? "h-14" : "h-10"
       } flex justify-center items-center transition-transform duration-700 group ${
         modal ? (modal.id == obj.id ? "scale-125" : "scale-75") : ""
       }">
-
-        <div class="backdrop-blur-lg p-1 rounded-full bg-opacity-20  text-[#00FF00] bg-[#00FF00] transition-[width,height] duration-300 relative flex justify-center items-center ${
-          obj.locations.length > 1 ? "size-12 hover:size-14" : "size-8 hover:size-10"
-        }" >
-          ${markerSvg}
-          ${obj.locations.length > 1 ? `<p class="absolute text-xs text-white">${obj.locations.length}</p>` : ""}
+  
+          <div class="backdrop-blur-lg p-1 rounded-full bg-opacity-20  text-[#00FF00] bg-[#00FF00] transition-[width,height] duration-300 ${
+            obj.locations.length > 1 ? "size-12 hover:size-14" : "size-8 hover:size-10"
+          }" >
+            ${markerSvg}
+            </div>
+            ${
+              obj.locations.length > 1
+                ? `<p class="absolute text-xs text-white pointer-events-none">${obj.locations.length}</p>`
+                : ""
+            }
+  
+          <p class="pin-text absolute block top-full text-center whitespace-nowrap pointer-events-none font-normal backdrop-blur-lg px-2 py-1 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" >${generateTitle(
+            obj
+          )}</p>
+  
         </div>
-
-        <p class="pin-text absolute block top-full text-center whitespace-nowrap pointer-events-none font-normal backdrop-blur-lg px-2 py-1 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" >${generateTitle(
-          obj
-        )}</p>
-
-      </div>
-      `;
+        `;
 
       // el.innerHTML = markerSvg;
       el.style.cursor = "pointer";
@@ -109,11 +106,13 @@ export default function ThreeDGlobe() {
     });
   }, [filteredClusters]);
 
+  // Filter
   useEffect(() => {
     const filteredData = globeData.filter((gData) => gData.type == filter || filter == "all");
     setFilteredClusters(createClusters(filteredData, 100));
   }, [filter]);
 
+  // Modal
   useEffect(() => {
     if (!modal) {
       world.controls().autoRotate = true;
@@ -152,14 +151,9 @@ export default function ThreeDGlobe() {
     }
   }, [modal]);
 
-  useEffect(() => {
-    world.backgroundColor(useWhite ? "#fff" : "#000");
-  }, [useWhite]);
-
   return (
-    <div className={`h-screen relative flex items-center justify-center`}>
+    <div className="w-screen h-screen relative">
       <div ref={globeRef} />
-
       <div className="absolute top-10 right-10">
         <select
           id="type"

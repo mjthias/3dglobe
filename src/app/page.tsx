@@ -13,6 +13,9 @@ export default function Home() {
         <li>
           <Link href={"/clusters"}>Clusters</Link>
         </li>
+        <li>
+          <Link href={"/safari"}>Safari (might be the only working on Safari atm)</Link>
+        </li>
 
         <li>
           <a href="https://visibleearth.nasa.gov/collection/1484/blue-marble" target="_blank">
