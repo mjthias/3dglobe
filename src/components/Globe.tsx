@@ -4,7 +4,6 @@ import Globe from "globe.gl";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { globeData } from "./globeData";
-import Map from "./Map";
 
 type GDataObject = {
   id: string;
@@ -42,22 +41,40 @@ export default function ThreeDGlobe() {
         el.innerHTML = `
         <div data-id="${
           obj.id
-        }" class="globe-marker relative h-10 flex justify-center items-center transition-transform duration-700 ${
+        }" class="globe-marker relative h-10 flex justify-center items-center transition-transform duration-700 group ${
           modal ? (modal.id == obj.id ? "scale-125" : "scale-75") : ""
-        }" >
-          <div class="backdrop-blur-lg p-1 rounded-full bg-[#00FF00] bg-opacity-20 size-9 hover:size-10 transition-[width,height] duration-300" >
+        }">
+
+          <div class="backdrop-blur-lg p-1 rounded-full bg-[#00FF00] bg-opacity-20 size-8 hover:size-10 transition-[width,height] duration-300" >
             ${markerSvg}
           </div>
-          <p class="absolute top-full pointer-events-none text-center font-normal backdrop-blur-lg px-2 py-1 rounded-md text-xs" >${
+
+          <p class="absolute block top-full text-center whitespace-nowrap pointer-events-none font-normal backdrop-blur-lg px-2 py-1 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" >${
             obj.title
           }</p>
+
         </div>
         `;
+
         // el.innerHTML = markerSvg;
         el.style.cursor = "pointer";
         el.style.pointerEvents = "auto";
         el.onclick = () => {
           setModal(obj);
+        };
+        el.onmouseover = (e) => {
+          const globeMarker = (e.target as HTMLElement).closest(".globe-marker");
+          if (!globeMarker) return;
+          const parent = globeMarker.parentElement;
+          if (!parent) return;
+          parent.classList.add("!z-[100]");
+        };
+        el.onmouseout = (e) => {
+          const globeMarker = (e.target as HTMLElement).closest(".globe-marker");
+          if (!globeMarker) return;
+          const parent = globeMarker.parentElement;
+          if (!parent) return;
+          parent.classList.remove("!z-[100]");
         };
         return el;
       });
@@ -113,7 +130,15 @@ export default function ThreeDGlobe() {
         if (marker.dataset?.id === modal.id) {
           marker.classList.add("scale-125");
           marker.classList.remove("scale-75");
-        } else marker.classList.add("scale-75");
+          if (marker.querySelector("p")?.style) {
+            (marker.querySelector("p") as HTMLParagraphElement).style.opacity = "100%";
+          }
+        } else {
+          marker.classList.add("scale-75");
+          if (marker.querySelector("p")?.style) {
+            (marker.querySelector("p") as HTMLParagraphElement).style.opacity = "";
+          }
+        }
       });
     } else {
       const markers = document.querySelectorAll<HTMLDivElement>(".globe-marker");
@@ -121,6 +146,9 @@ export default function ThreeDGlobe() {
       markers.forEach((marker) => {
         marker.classList.remove("scale-125");
         marker.classList.remove("scale-75");
+        if (marker.querySelector("p")?.style) {
+          (marker.querySelector("p") as HTMLParagraphElement).style.opacity = "";
+        }
       });
     }
   }, [modal]);
