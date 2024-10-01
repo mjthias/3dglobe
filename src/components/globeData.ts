@@ -2,6 +2,7 @@ export const globeData = [
   {
     id: "a",
     title: "Fortescue Centre",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: -31.9616328,
     lng: 115.8713145,
@@ -9,6 +10,7 @@ export const globeData = [
   {
     id: "b",
     title: "Christmas Creek",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: -27.1039763,
     lng: 123.9278938,
@@ -16,6 +18,7 @@ export const globeData = [
   {
     id: "c",
     title: "Herb Elliot Port",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: -20.366525,
     lng: 118.558611,
@@ -23,6 +26,7 @@ export const globeData = [
   {
     id: "d",
     title: "Green Iron Metal Project",
+    type: "project",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: -22.4019969,
     lng: 119.7422851,
@@ -30,6 +34,7 @@ export const globeData = [
   {
     id: "e",
     title: "Holmaneset Project",
+    type: "project",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: 60.8854899,
     lng: 5.3948564,
@@ -37,6 +42,7 @@ export const globeData = [
   {
     id: "f",
     title: "Kidlington R&D",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: 51.8290939,
     lng: -1.3119557,
@@ -44,6 +50,7 @@ export const globeData = [
   {
     id: "g",
     title: "Hazelmere R&D",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: -31.9149264,
     lng: 116.0098845,
@@ -51,6 +58,7 @@ export const globeData = [
   {
     id: "h",
     title: "Michigan Manufacturing",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: 42.3527321,
     lng: -83.2552588,
@@ -58,6 +66,7 @@ export const globeData = [
   {
     id: "i",
     title: "Arizona Hydrogen",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: 33.5163822,
     lng: -112.0992753,
@@ -65,6 +74,7 @@ export const globeData = [
   {
     id: "j",
     title: "Ivindo Gabon",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: 0.6122462,
     lng: 12.7454694,
@@ -72,6 +82,7 @@ export const globeData = [
   {
     id: "k",
     title: "Gladstone Manufacturing",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: -23.881321,
     lng: 150.9629492,
@@ -79,6 +90,7 @@ export const globeData = [
   {
     id: "l",
     title: "OCP Joint Venture",
+    type: "other",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
     lat: 31.6347411,
     lng: -8.090253,
@@ -87,6 +99,7 @@ export const globeData = [
     id: "m",
     title: "London Office",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    type: "office",
     lat: 51.4930362,
     lng: -0.1687026,
   },
@@ -94,6 +107,7 @@ export const globeData = [
     id: "n",
     title: "Rome Office",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    type: "office",
     lat: 41.9007028,
     lng: 12.4746515,
   },
@@ -101,6 +115,7 @@ export const globeData = [
     id: "o",
     title: "Pecem Project",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    type: "project",
     lat: -3.5481936,
     lng: -38.8351029,
   },
@@ -108,6 +123,7 @@ export const globeData = [
     id: "p",
     title: "Aratama Project",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic a ab ipsum expedita maxime esse maiores atque, quisquam qui aliquid exercitationem magnam ad perferendis sapiente voluptates incidunt, quaerat ex commodi?",
+    type: "project",
     lat: -6.9939977,
     lng: -39.8628409,
   },
