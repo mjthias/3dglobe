@@ -31,8 +31,9 @@ export default function SafariGlobe() {
     // Ensure that touch events (one-finger) are not intercepted by the globe
     world.renderer().domElement.addEventListener("touchmove", (event) => {
       if (event.touches.length === 1) {
-        // Allow the browser to handle scrolling with one-finger touch
-        event.preventDefault();
+        // Calculate the scroll movement based on the touch movement
+        const deltaY = event.touches[0].clientY - event.touches[0].screenY;
+        window.scrollBy(0, -deltaY); // Scroll the window based on touch movement
       }
     });
     world.controls().enableZoom = false;
