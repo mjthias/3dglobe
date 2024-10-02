@@ -24,7 +24,7 @@ export default function SafariGlobe() {
       .bumpImageUrl("//unpkg.com/three-globe/example/img/earth-topology.png")(globeRef.current);
 
     world.pointOfView({ altitude: 1.7 });
-
+    world.controls().touches.ONE = null;
     world.controls().enableZoom = false;
     world.width(window.innerWidth);
 
@@ -170,7 +170,7 @@ export default function SafariGlobe() {
       </div>
 
       <div
-        className={`absolute top-10 left-10 bottom-10 w-[500px] bg-black bg-opacity-30 rounded-xl backdrop-blur-lg p-6 ${
+        className={`absolute top-10 left-10 bottom-10 w-[500px] bg-black bg-opacity-30 rounded-xl backdrop-blur-lg p-6 z-[200] ${
           !modal ? "opacity-0 translate-y-4 pointer-events-none" : "transition-opacity duration-200"
         }`}
       >

@@ -177,7 +177,7 @@ export default function ThreeDGlobe() {
       </div>
 
       <div
-        className={`absolute top-10 left-10 bottom-10 w-[500px] bg-black bg-opacity-30 rounded-xl backdrop-blur-lg p-6 ${
+        className={`absolute top-10 left-10 bottom-10 w-[500px] bg-black bg-opacity-30 rounded-xl backdrop-blur-lg p-6 z-[200] ${
           !modal ? "opacity-0 translate-y-4 pointer-events-none" : "transition-opacity duration-200"
         }`}
       >
