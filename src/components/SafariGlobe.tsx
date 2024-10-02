@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Globe from "globe.gl";
 import { Cluster, createClusters } from "./createClusters";
 import { globeData } from "./globeData";
+import * as THREE from "three";
 
 export default function SafariGlobe() {
   const globeRef = useRef<HTMLDivElement | null>(null);
@@ -25,6 +26,15 @@ export default function SafariGlobe() {
 
     world.pointOfView({ altitude: 1.7 });
     world.controls().touches.ONE = null;
+    world.controls().touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
+
+    // Ensure that touch events (one-finger) are not intercepted by the globe
+    world.renderer().domElement.addEventListener("touchmove", (event) => {
+      if (event.touches.length === 1) {
+        // Allow the browser to handle scrolling with one-finger touch
+        event.preventDefault();
+      }
+    });
     world.controls().enableZoom = false;
     world.width(window.innerWidth);
 
