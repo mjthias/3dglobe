@@ -44,6 +44,7 @@ export default function ThreeDGlobe() {
 
     world.controls().enableZoom = false;
     world.width(window.innerWidth);
+    world.controls().touches.ONE = undefined;
 
     window.addEventListener("resize", handleResize);
 
