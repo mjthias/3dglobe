@@ -163,59 +163,63 @@ export default function SafariGlobe() {
   }, [modal]);
 
   return (
-    <div className="w-screen h-screen relative">
-      <div ref={globeRef} />
-      <div className="absolute top-10 right-10">
-        <select
-          id="type"
-          className="bg-[#292929]"
-          onChange={(e) => {
-            setFilter(e.target.value);
-          }}
-        >
-          <option value="all">All</option>
-          <option value="project">Project</option>
-          <option value="office">Office</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-
-      <div
-        className={`absolute top-10 left-10 bottom-10 w-[500px] bg-black bg-opacity-30 rounded-xl backdrop-blur-lg p-6 z-[200] ${
-          !modal ? "opacity-0 translate-y-4 pointer-events-none" : "transition-opacity duration-200"
-        }`}
-      >
-        <div className="flex justify-end">
-          <button
-            onClick={() => {
-              setModal(null);
+    <>
+      <div className="bg-white h-20"></div>
+      <div className="w-screen h-screen relative">
+        <div ref={globeRef} />
+        <div className="absolute top-10 right-10">
+          <select
+            id="type"
+            className="bg-[#292929]"
+            onChange={(e) => {
+              setFilter(e.target.value);
             }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 16 16" fill="none">
-              <path d="M12 4L4 12M4 4L12 12" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+            <option value="all">All</option>
+            <option value="project">Project</option>
+            <option value="office">Office</option>
+            <option value="other">Other</option>
+          </select>
         </div>
-        {modal?.locations && modal.locations.length > 1 && (
-          <div className="grid gap-10">
-            {modal.locations.map((loc, index) => {
-              return (
-                <details key={`modal-accordion-${index}`}>
-                  <summary className="text-2xl cursor-pointer">{loc.title}</summary>
-                  <p className="text-sm mt-6">{loc.text}</p>
-                </details>
-              );
-            })}
-          </div>
-        )}
 
-        {modal?.locations && modal.locations.length === 1 && (
-          <>
-            <p className="text-2xl">{modal.locations[0].title}</p>
-            <p className="text-sm mt-6">{modal.locations[0].text}</p>
-          </>
-        )}
+        <div
+          className={`absolute top-10 left-10 bottom-10 w-[500px] bg-black bg-opacity-30 rounded-xl backdrop-blur-lg p-6 z-[200] ${
+            !modal ? "opacity-0 translate-y-4 pointer-events-none" : "transition-opacity duration-200"
+          }`}
+        >
+          <div className="flex justify-end">
+            <button
+              onClick={() => {
+                setModal(null);
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 16 16" fill="none">
+                <path d="M12 4L4 12M4 4L12 12" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+          {modal?.locations && modal.locations.length > 1 && (
+            <div className="grid gap-10">
+              {modal.locations.map((loc, index) => {
+                return (
+                  <details key={`modal-accordion-${index}`}>
+                    <summary className="text-2xl cursor-pointer">{loc.title}</summary>
+                    <p className="text-sm mt-6">{loc.text}</p>
+                  </details>
+                );
+              })}
+            </div>
+          )}
+
+          {modal?.locations && modal.locations.length === 1 && (
+            <>
+              <p className="text-2xl">{modal.locations[0].title}</p>
+              <p className="text-sm mt-6">{modal.locations[0].text}</p>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+      <div className="bg-white h-screen"></div>
+    </>
   );
 }
