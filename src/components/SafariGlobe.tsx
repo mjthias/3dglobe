@@ -31,9 +31,7 @@ export default function SafariGlobe() {
     // Ensure that touch events (one-finger) are not intercepted by the globe
     world.renderer().domElement.addEventListener("touchmove", (event) => {
       if (event.touches.length === 1) {
-        // Calculate the scroll movement based on the touch movement
-        const deltaY = event.touches[0].clientY - event.touches[0].screenY;
-        window.scrollBy(0, -deltaY); // Scroll the window based on touch movement
+        return;
       }
     });
     world.controls().enableZoom = false;
@@ -183,7 +181,7 @@ export default function SafariGlobe() {
         </div>
 
         <div
-          className={`absolute top-10 left-10 bottom-10 w-[500px] bg-black bg-opacity-30 rounded-xl backdrop-blur-lg p-6 z-[200] ${
+          className={`absolute top-10 left-10 bottom-10 w-full max-w-[500px] bg-black bg-opacity-30 rounded-xl backdrop-blur-lg p-6 z-[200] ${
             !modal ? "opacity-0 translate-y-4 pointer-events-none" : "transition-opacity duration-200"
           }`}
         >
