@@ -5,6 +5,7 @@ import Globe, { type GlobeMethods } from "react-globe.gl";
 import { useEffect, useRef, useState } from "react";
 import { Cluster, createClusters } from "./createClusters";
 import { globeData } from "./globeData";
+import * as THREE from "three";
 
 const CLUSTER_KM = 100;
 
@@ -24,6 +25,7 @@ export default function ReactGlobe() {
     // Globe base settings
     globe.controls().enableZoom = false;
     globe.controls().touches.ONE = null;
+    globe.controls().touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
 
     // Settings depending on modal
     if (modal) {
@@ -56,7 +58,7 @@ export default function ReactGlobe() {
   return (
     <div>
       <div className="h-screen bg-white" />
-      <div className="relative w-screen h-screen">
+      <div className="relative w-screen h-screen [&_canvas]:!touch-auto">
         <Globe
           ref={globeRef}
           globeImageUrl={"/globe-blue-marble.jpg"}
