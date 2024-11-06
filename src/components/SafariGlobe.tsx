@@ -163,7 +163,7 @@ export default function SafariGlobe() {
   return (
     <>
       <div className="bg-white h-20"></div>
-      <div className="w-screen h-screen relative">
+      <div className="w-screen h-screen relative [&_canvas]:!touch-auto">
         <div ref={globeRef} />
         <div className="absolute top-10 right-10">
           <select

@@ -7,7 +7,7 @@ import { Cluster, createClusters } from "./createClusters";
 import { globeData } from "./globeData";
 import * as THREE from "three";
 
-const CLUSTER_KM = 100;
+const CLUSTER_KM = 0;
 
 export default function ReactGlobe() {
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
@@ -29,7 +29,7 @@ export default function ReactGlobe() {
 
     // Settings depending on modal
     if (modal) {
-      globe.pointOfView({ lat: modal.lat, lng: modal.lng, altitude: 0.7 }, 700);
+      globe.pointOfView({ lat: modal.lat, lng: modal.lng, altitude: 0.15 }, 700);
       globe.controls().autoRotate = false;
     } else {
       globe.pointOfView({ altitude: 1.7 }, 700);
@@ -52,7 +52,7 @@ export default function ReactGlobe() {
   // Filter updates
   useEffect(() => {
     const filteredData = globeData.filter((gData) => gData.type == filter || filter == "all");
-    setFilteredClusters(createClusters(filteredData, 100));
+    setFilteredClusters(createClusters(filteredData, CLUSTER_KM));
   }, [filter]);
 
   return (
